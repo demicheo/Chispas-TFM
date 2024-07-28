@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <rect x="2.5" y="21.25" width="45" height="7.5" rx="3.75" ry="3.75" transform="translate(25 -10.355) rotate(45)" fill="#000" stroke-width="0"/>
+  <rect x="21.705" y="13.295" width="22.5" height="7.5" rx="3.75" ry="3.75" transform="translate(68.31 5.795) rotate(135)" fill="#000" stroke-width="0"/>
+  <rect x="5.795" y="29.205" width="22.5" height="7.5" rx="3.75" ry="3.75" transform="translate(52.4 44.205) rotate(135)" fill="#000" stroke-width="0"/>
+</svg>

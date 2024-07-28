@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <rect x="2.639" y="21.25" width="45" height="7.5" rx="3.75" ry="3.75" fill="inherit" stroke-width="0"/>
+  <rect x="27.335" y="15.947" width="22.5" height="7.5" rx="3.75" ry="3.75" transform="translate(25.229 -21.515) rotate(45)" fill="inherit" stroke-width="0"/>
+  <rect x="27.335" y="26.553" width="22.5" height="7.5" rx="3.75" ry="3.75" transform="translate(87.297 24.447) rotate(135)" fill="inherit" stroke-width="0"/>
+</svg>

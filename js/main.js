@@ -1,9 +1,10 @@
-console.log('Tamos ready')
+console.log('Tamos ready');
 
 /* BURGER */
 
 const menuBurger = document.querySelector('.header__burger');
 const menuNav = document.querySelector('.header__menu');
+
 
 let menuOpen = false;
 
@@ -27,51 +28,118 @@ menuBurger.addEventListener('click', function () {
 })
 
 
-/*hover del hero
 
-const tituloHero = document.querySelector('.hero-titulo');
 
-tituloHero.addEventListener('mouseenter', () => {
-    tituloHero.classList.add('hover-wght');
-    console.log('dentro!!!');
+/*TARJETAS Y SORT*/
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Obtener los elementos del DOM
+    const botonMas = document.getElementById('toggleCategoria');
+    let mostrarCategorias = false;
+    const menuCat = document.getElementById('categoriaMenu');
+    const botonCat = document.querySelectorAll('.categoria-opcion');
+    const tituloCat = document.getElementById('categoriaTitulo');
+    const tarjetasCortos = document.querySelectorAll('.tarjeta-corto');
+    const tarjetasCont = document.getElementById('contenedorTarjetasCortos');
+    const paginador = document.querySelector('.paginador')
+
+    // Añadir evento al botón para abrir/cerrar el menú
+    botonMas.addEventListener("click", function() {
+        // Verificar el estado de mostrarCategorias
+        if (!mostrarCategorias) {
+            console.log('abrir');
+            mostrarCategorias = true;
+            menuCat.classList.add("abierto");
+            menuCat.classList.remove("cerrado");
+            tarjetasCont.classList.add("desplazar");
+            botonMas.classList.add('activo');
+        } else {
+            console.log('cerrar');
+            mostrarCategorias = false;
+            menuCat.classList.add("cerrado");
+            menuCat.classList.remove("abierto");
+            tarjetasCont.classList.remove("desplazar");
+            botonMas.classList.remove('activo');
+        }
+    });
+
+    // Añadir evento a cada botón de categoría
+    botonCat.forEach(option => {
+        option.addEventListener("click", function() {
+            const selectedCategory = this.getAttribute("data-category");
+            tituloCat.textContent = option.innerText;
+            botonMas.classList.remove('activo');
+
+            tarjetasCortos.forEach(card => {
+                if (selectedCategory === "all") {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = card.getAttribute("data-category") === selectedCategory ? "block" : "none";
+                }
+            }); 
+
+            //decidir si me gusta más que se cierre o que se quede abierto hasta que pulsas el +
+            mostrarCategorias = false;
+            menuCat.classList.add("cerrado");
+            menuCat.classList.remove("abierto");
+            tarjetasCont.classList.remove("desplazar"); 
+        });
+    });
 });
 
-tituloHero.addEventListener('mouseleave', () => {
-    tituloHero.classList.remove('hover-wght');
-});*/
+
+document.querySelectorAll('.boton-desplegable').forEach(button => {
+    button.addEventListener('click', function() {
+        const desplegableElemento = button.closest('.desplegable-elemento');
+        
+        if (desplegableElemento) {
+            const info = desplegableElemento.querySelector('.info');
+            
+            if (info) {
+                info.classList.toggle('d-none');
+                button.classList.toggle('desplegado'); // Toggle the 'desplegado' class on the button
+            }
+        }
+    });
+});
 
 
-/*scroll horizontal home*/
+
+//botones que funcionan de enlace
+
+function irEntradas() {
+    window.location.href = './entradas.php';
+    console.log('tenog susto')
+}
+
+
+// desplegable acordeon
+
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.querySelector('.festival__ponencias');
-    const cards = document.querySelectorAll('.card');
-    const leftButton = document.querySelector('.scroll-button.left');
-    const rightButton = document.querySelector('.scroll-button.right');
+    // Selecciona todos los elementos con la clase desplegable-item
+    const acordeonItems = document.querySelectorAll('.desplegable-item');
 
-    const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginRight);
-    let scrollAmount = 0;
+    acordeonItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            // Añade la clase elevate al item
+            item.classList.add('elevate');
+            // Encuentra el párrafo dentro del item y quita la clase d-none
+            const p = item.querySelector('p');
+            if (p) {
+                p.classList.remove('d-none');
+                p.classList.add('show');
+            }
+        });
 
-    function scrollLeft() {
-        if (scrollAmount > 0) {
-            scrollAmount -= cardWidth;
-            container.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-        } else {
-            scrollAmount = container.scrollWidth - container.clientWidth;
-            container.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-        }
-    }
-
-    function scrollRight() {
-        if (scrollAmount < container.scrollWidth - container.clientWidth) {
-            scrollAmount += cardWidth;
-            container.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-
-        } else {
-            scrollAmount = 0;
-            container.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-        }
-    }
-
-    leftButton.addEventListener('click', scrollLeft);
-    rightButton.addEventListener('click', scrollRight);
+        item.addEventListener('mouseleave', function() {
+            // Quita la clase elevate del item
+            item.classList.remove('elevate');
+            // Encuentra el párrafo dentro del item y añade la clase d-none
+            const p = item.querySelector('p');
+            if (p) {
+                p.classList.remove('show');
+                p.classList.add('d-none');
+            }
+        });
+    });
 });
